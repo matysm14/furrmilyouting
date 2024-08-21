@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+
+
+      <%= form_with model: @eatery do |f| %>
+      <h3>基本情報</h3>
+      <h6>店舗名</h6>
+      <%= f.text_field :restaurant_name %>
+      <h6>住所</h6>
+      <%= f.text_field :address %>
+      <h6>電話番号</h6>
+      <%= f.text_field :phone_number %>
+    </div>
+
+    <div class="col-md-6 offset-md-1">
+
+      <h3>追加情報</h3>
+      <h6>URL</h6>
+      <%= f.text_area :home_page %>
+
+    </div>
+
+    <div class="mx-auto">
+
+      <%= link_to "戻る", admin_dashboard_path %>
+      <%= f.submit '保存' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

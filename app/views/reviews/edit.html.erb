@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+    <div class="col-md-12">
+
+        <%= form_with model: @review do |f| %>
+
+        <p>タイトル</p>
+        <%= f.text_field :title %>
+
+        <p>レビュー</p>
+        <%= f.text_area :body %><br>
+        <%= f.submit 'Update Book', class: "btn btn-success" %>
+        <% end %>
+
+         <span>
+         <%= link_to "戻る", user_path(current_user) %>
+         <%= f.submit '投稿' %>
+         <%= link_to "投稿を削除する", user_path(current_user) method: :delete, "data-confirm" => "本当に削除しますか?" %>
+         </span>
+         
+    </div>
+    </div>
+  </div>
+</div>

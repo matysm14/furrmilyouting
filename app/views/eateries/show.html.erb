@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+
+      <div class="col-md-5">
+
+        <h3><%= @eatery.restaurant_name %></h3>
+        <i class="fa-solid fa-location-dot"></i> <%= @eatery.address %>
+        </br>
+        <i class="fa-solid fa-mobile-screen-button"></i> <%= @eatery.phone_number %>
+        </br>
+        <%= @eatery.home_page %>
+
+      </div>
+
+      <div class="col-md-3 offset-md-4">
+        <%= link_to "お気に入り登録", eateries_path, class: "btn btn-outline-secondary btn-block" %>
+      </div>
+  </div>
+
+  <div class="row">
+
+      <div class="col-md-5">
+        <div class="form-group position-static">
+          <p>評価:</P>
+            <div id="post_raty"></div>
+              <script>
+                var elem = document.querySelector('#post_raty');
+                var opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                scoreName: 'review[star]',
+                };
+                raty(elem,opt);
+              </script>
+        </div>
+
+
+        <%= form_with model: @new_review do |f| %>
+        <p>タイトル</p>
+        <%= f.text_field :title %>
+        <p>本文</p>
+        <%= f.text_area :body %>
+        <%= f.file_field :image, accept: "image/*" %>
+        </br>
+        <%= f.hidden_field :eatery_id, value: @eatery.id %>
+        <%= f.submit '投稿' %>
+        <% end %>
+
+      </div>
+
+      <div class="col-md-6 offset-md-1">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td><%= image_tag @user.get_profile_image(100,100) %></br>
+              <%= @review.user.name %></td>
+              <td><%= @review.title %></br>
+              <%= @review.body %></td>
+            </tr>
+          </tbody>
+        </tbody>
+      </div>
+
+
+  </div>
+</div>
