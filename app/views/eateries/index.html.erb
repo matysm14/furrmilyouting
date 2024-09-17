@@ -1,11 +1,30 @@
 <div class="container">
   <div class="row">
       <div class="col-md-12">
+        <% if user_signed_in? %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :content %>
+          <%= f.select :model, options_for_select({ "飲食店" => "eatery", "宿泊施設" => "londing" }) %>
+          <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
+          <%= f.submit '検索' %>
+          <% end %>
+        <% end %>
 
-        <% @eatery.each do |eatery| %>
+        <% @eateries.each do |eatery| %>
+        <div id="show_star-<%= eatery.id %>"></div>
+          <script>
+          var elem = document.querySelector('#show_star-<%= eatery.id %>');
+          var opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          readOnly: true,
+          score: <%= eatery.reviews.average(:star).to_f %>
+          };
+          raty(elem,opt);
+          </script>
+
         <div>
-        <%= link_to eatery.restaurant_name, eatery_path(eatery.id) %>
-        </br>
+        <h3><%= link_to eatery.restaurant_name, eatery_path(eatery.id) %></h3>
         <i class="fa-solid fa-location-dot"></i> <%= eatery.address %>
         </div>
         <% end %>

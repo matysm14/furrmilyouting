@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :eateries, only: [:new, :create, :index, :show]
   resources :reviews, only: [:create, :edit, :update, :destroy]
   resources :lodgings, only: [:index, :show]
+  get '/search', to: 'searches#search'
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'

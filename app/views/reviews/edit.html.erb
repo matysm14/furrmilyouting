@@ -2,23 +2,33 @@
   <div class="row">
     <div class="mx-auto">
     <div class="col-md-12">
-
+      
         <%= form_with model: @review do |f| %>
+        
+        <div class="form-group position-static">
+            <div id="post_raty"></div>
+              <script>
+                var elem = document.querySelector('#post_raty');
+                var opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                scoreName: 'review[star]',
+                };
+                raty(elem,opt);
+              </script>
+        </div>
+        
+          <p>タイトル</p>
+          <%= f.text_field :title %>
+          <p>レビュー</p>
+          <%= f.text_area :body %><br>
 
-        <p>タイトル</p>
-        <%= f.text_field :title %>
-
-        <p>レビュー</p>
-        <%= f.text_area :body %><br>
-        <%= f.submit 'Update Book', class: "btn btn-success" %>
+          <%= f.submit '更新', class: "btn btn-outline-success" %>
         <% end %>
 
-         <span>
-         <%= link_to "戻る", user_path(current_user) %>
-         <%= f.submit '投稿' %>
-         <%= link_to "投稿を削除する", user_path(current_user) method: :delete, "data-confirm" => "本当に削除しますか?" %>
-         </span>
-         
+        <%= link_to "戻る", user_path(current_user) %>/
+        <%= link_to "投稿を削除", review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか?" %>
+
     </div>
     </div>
   </div>

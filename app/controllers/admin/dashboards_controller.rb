@@ -5,6 +5,7 @@ class Admin::DashboardsController < ApplicationController
 
  def show
   @eatery = Eatery.find(params[:id])
+  @categories = @eatery.categories
  end
 
  def approved
@@ -33,7 +34,7 @@ class Admin::DashboardsController < ApplicationController
  private
 
  def eatery_params
-  params.require(:eatery).permit(:restaurant_name, :address, :phone_number, :home_page)
+  params.require(:eatery).permit(:restaurant_name, :address, :phone_number, :home_page, category_ids: [])
  end
 
 end

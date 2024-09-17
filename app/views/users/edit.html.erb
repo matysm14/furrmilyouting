@@ -10,8 +10,13 @@
         <label for="inputImage">プロフィール画像</label><br>
         <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %><br>
 
-        <%= link_to "戻る", user_path(current_user) %>
-        <%= f.submit "更新", class: "btn btn-outline-secondary" %>
+
+        <%= f.submit '更新', class: "btn btn-outline-success" %>
+        </br>
+        <%= link_to "戻る", user_path(current_user) %>/
+        <% if @user == current_user %>
+          <%= link_to "アカウントを削除する", user_path(current_user.id), method: :delete, "data-confirm" => "本当に消しますか?" %>
+        <% end %>
 
         <% end %>
 

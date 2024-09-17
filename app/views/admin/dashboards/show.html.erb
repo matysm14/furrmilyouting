@@ -1,25 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto">
-      <div class="col-md-12">
 
-        <h5><%= @eatery.restaurant_name %></h5>
-
-        <h6>住所</h6>
-        <p><%= @eatery.address %></p>
-
-        <h6>電話番号</h6>
-        <p><%= @eatery.phone_number %></p>
-
-        <h6>URL</h6>
-        <p><%= @eatery.home_page %></p>
+        <h5>店舗名</h5>
+        <%= @eatery.restaurant_name %>
+        <h5>住所</h5>
+        <%= @eatery.address %>
+        <h5>電話番号</h5>
+        <%= @eatery.phone_number %>
+        <h5>URL</h5>
+        <%= @eatery.home_page %>
+        <h5>カテゴリ</h5>
+        <% @categories.each do |category| %>
+        <%= category.name %>
+        <% end %></br>
 
         <%= link_to "編集", edit_admin_dashboard_path(@eatery.id), class: "btn btn-outline-secondary" %>
         <%= link_to "削除", admin_dashboard_path(@eatery.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %>
-        <%= button_to "投稿を承認する", admin_approved_path(@eatery.id), method: :post %>
+        <% unless @eatery.approved %>
+          <%= button_to "投稿を承認する", admin_approved_path(@eatery.id), method: :post %>
+        <% end %>
+     </div>
 
-      </div>
-    </div>
+
   </div>
 </div>
 

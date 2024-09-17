@@ -31,15 +31,31 @@
 
     <table class="table table-striped">
       <tbody>
-        <tr>
-          <% @user.reviews.each do |review| %>
-          
-          <td><%= review.title %></br>
-          <%= review.body %></td>
-          <% end %>
-          <td><%= link_to "編集", edit_review_path(@review.id), class: "btn btn-outline-success" %></td>
-          <td><%= link_to "削除", user_path(@user.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></td>
-        </tr>
+        <% @user.reviews.each do |review| %>
+          <tr>
+          <td>
+            <div id="show_star-<%= review.id %>"></div>
+              <script>
+                var elem = document.querySelector('#show_star-<%= review.id %>');
+                var opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                readOnly: true,
+                score: <%= review.star %>
+                };
+                raty(elem,opt);
+               </script>
+
+            <%= review.title %></br>
+            <%= review.body %></br>
+            <% review.images.each do |image| %>
+              <%= image_tag image, style: "width: 100px; height: 100px" %>
+            <% end %>
+          </td>
+          <td><%= link_to "編集", edit_review_path(review.id), class: "btn btn-outline-success" %></td>
+          <td><%= link_to "削除", review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
 

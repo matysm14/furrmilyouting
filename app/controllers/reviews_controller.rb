@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     @review.eatery_id = params[:review][:eatery_id]
     @review.save
-    redirect_to eateries_path
+    redirect_to eatery_path(@review.eatery_id)
   end
 
   def edit
@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.update (review_params)
     flash[:notice] = "You have updated book successfully."
-    redirect_to _path(@review.id)
+    redirect_to user_path(current_user)
     else
     render :edit
     end
@@ -25,13 +25,13 @@ class ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    rediret_to user_path(@user.id)
+    redirect_to user_path(current_user)
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:rating, :title, :image, :body, :eatery_id, :star)
+    params.require(:review).permit(:title, :body, :eatery_id, :star, images: [])
   end
 
 end

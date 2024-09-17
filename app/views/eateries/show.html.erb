@@ -2,45 +2,56 @@
   <div class="row">
 
       <div class="col-md-5">
-
         <h3><%= @eatery.restaurant_name %></h3>
-        <i class="fa-solid fa-location-dot"></i> <%= @eatery.address %>
-        </br>
-        <i class="fa-solid fa-mobile-screen-button"></i> <%= @eatery.phone_number %>
-        </br>
-        <%= @eatery.home_page %>
+        <table class="table table-default table-striped-columns">
+          <tr>
+            <th><i class="fa-solid fa-location-dot"></i> 住所</th> <td><%= @eatery.address %></td>
+          </tr>
+          <tr>
+            <th><i class="fa-solid fa-mobile-screen-button"></i> 電話番号</th> <td><%= @eatery.phone_number %></td>
+          </tr>
+          <tr>
+            <th><i class="fa-regular fa-window-restore"></i></i> ホームページ</th> <td><%= @eatery.home_page %></td>
+          </tr>
+          <tr>
+            <th><i class="fa-regular fa-clock"></i></i> 営業時間</th> <td></td>
+          </tr>
+        </table>
+
+        <% @categories.each do |category| %>
+       <h6><%= category.name %></h6>
+        <% end %>
 
       </div>
 
       <div class="col-md-3 offset-md-4">
         <%= link_to "お気に入り登録", eateries_path, class: "btn btn-outline-secondary btn-block" %>
+
       </div>
   </div>
 
   <div class="row">
-
       <div class="col-md-5">
-        <div class="form-group position-static">
-          <p>評価:</P>
-            <div id="post_raty"></div>
-              <script>
-                var elem = document.querySelector('#post_raty');
-                var opt = {
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                scoreName: 'review[star]',
-                };
-                raty(elem,opt);
-              </script>
-        </div>
-
+        <h5>口コミ</h5>
 
         <%= form_with model: @new_review do |f| %>
+        <div class="form-group position-static">
+          <div id="post_raty"></div>
+            <script>
+            var elem = document.querySelector('#post_raty');
+            var opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            scoreName: 'review[star]',
+            };
+            raty(elem,opt);
+            </script>
+        </div>
         <p>タイトル</p>
         <%= f.text_field :title %>
         <p>本文</p>
         <%= f.text_area :body %>
-        <%= f.file_field :image, accept: "image/*" %>
+        <%= f.file_field :images, accept: "image/*", multiple: true %>
         </br>
         <%= f.hidden_field :eatery_id, value: @eatery.id %>
         <%= f.submit '投稿' %>
@@ -49,16 +60,36 @@
       </div>
 
       <div class="col-md-6 offset-md-1">
+        <h5>口コミ一覧</h5>
         <table class="table table-striped">
           <tbody>
+            <% @eatery.reviews.each do |review| %>
             <tr>
-              <td><%= image_tag @user.get_profile_image(100,100) %></br>
-              <%= @review.user.name %></td>
-              <td><%= @review.title %></br>
-              <%= @review.body %></td>
+              <td><%= image_tag review.user.get_profile_image(80,80) %></br>
+              <%= review.user.name %></td>
+
+              <td><div id="show_star-<%= review.id %>"></div>
+                <script>
+                  var elem = document.querySelector('#show_star-<%= review.id %>');
+                  var opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  readOnly: true,
+                  score: <%= review.star %>
+                  };
+                  raty(elem,opt);
+                </script>
+
+              <%= review.title %></br>
+              <%= review.body %></br>
+              <% review.images.each do |image| %>
+              <%= image_tag image, style: "width: 100px; height: 100px" %>
+              <% end %>
+            </td>
             </tr>
+            <% end %>
           </tbody>
-        </tbody>
+        </table>
       </div>
 
 
