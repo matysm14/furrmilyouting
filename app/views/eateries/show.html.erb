@@ -2,7 +2,7 @@
   <div class="row">
 
       <div class="col-md-5">
-        <h3><%= @eatery.restaurant_name %></h3>
+        <h2><%= @eatery.restaurant_name %></h2>
         <table class="table table-default table-striped-columns">
           <tr>
             <th><i class="fa-solid fa-location-dot"></i> 住所</th> <td><%= @eatery.address %></td>
@@ -11,23 +11,38 @@
             <th><i class="fa-solid fa-mobile-screen-button"></i> 電話番号</th> <td><%= @eatery.phone_number %></td>
           </tr>
           <tr>
-            <th><i class="fa-regular fa-window-restore"></i></i> ホームページ</th> <td><%= @eatery.home_page %></td>
+            <th><i class="fa-regular fa-window-restore"></i> ホームページ</th> <td><%= @eatery.home_page %></td>
           </tr>
           <tr>
-            <th><i class="fa-regular fa-clock"></i></i> 営業時間</th> <td></td>
+            <th><i class="fa-regular fa-clock"></i> 営業時間</th> <td></td>
+          </tr>
+          <tr>
+            <th><i class="fa-regular fa-clipboard"></i> その他</th>
+            <td>
+              <% @categories.each do |category| %>
+              <%= category.name %>
+              <% end %>
+            </td>
           </tr>
         </table>
-
-        <% @categories.each do |category| %>
-       <h6><%= category.name %></h6>
-        <% end %>
-
       </div>
 
       <div class="col-md-3 offset-md-4">
         <%= link_to "お気に入り登録", eateries_path, class: "btn btn-outline-secondary btn-block" %>
-
       </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h5>投稿画像</h5>
+      <% @eatery.reviews.each do |reviews| %>
+        <div>
+          <% reviews.images.each do |images| %>
+              <%= image_tag images, style: "width: 100px; height: 100px" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <div class="row">
@@ -54,7 +69,7 @@
         <%= f.file_field :images, accept: "image/*", multiple: true %>
         </br>
         <%= f.hidden_field :eatery_id, value: @eatery.id %>
-        <%= f.submit '投稿' %>
+        <%= f.submit '投稿', class: "btn btn-outline-success" %>
         <% end %>
 
       </div>

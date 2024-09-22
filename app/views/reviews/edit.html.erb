@@ -2,9 +2,9 @@
   <div class="row">
     <div class="mx-auto">
     <div class="col-md-12">
-      
+
         <%= form_with model: @review do |f| %>
-        
+
         <div class="form-group position-static">
             <div id="post_raty"></div>
               <script>
@@ -17,17 +17,19 @@
                 raty(elem,opt);
               </script>
         </div>
-        
+
           <p>タイトル</p>
           <%= f.text_field :title %>
           <p>レビュー</p>
           <%= f.text_area :body %><br>
+          <label for="inputImage">画像</label><br>
+          <%= f.file_field :profile_image, placeholder: "画像", accept: "image/*" %><br>
 
+          <%= link_to "戻る", user_path(current_user), class: "btn btn-outline-secondary" %>
           <%= f.submit '更新', class: "btn btn-outline-success" %>
         <% end %>
 
-        <%= link_to "戻る", user_path(current_user) %>/
-        <%= link_to "投稿を削除", review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか?" %>
+        <%= link_to "投稿を削除する", review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか?" %>
 
     </div>
     </div>

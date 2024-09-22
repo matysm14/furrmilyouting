@@ -1,17 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="mx-auto">
-      <div class="col-md-12">
-
-        <% @eatery.each do |eatery| %>
-        <div>
-        <%= link_to eatery.restaurant_name, admin_dashboard_path(eatery.id) %>
-        <%= link_to eatery.user.name, user_path(eatery.user_id) %>
-        <%= eatery.approved ?  "承認済み" : "未承認" %>
-        </div>
-        <% end %>
-
-      </div>
+    <div class="col-md-12">
+      <h2>申請履歴一覧</h2>
+        
+        <table class="table table-striped">
+        　<thead>
+            <tr>
+              <th>飲食店名</th>
+              <th>申請者</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% @eatery.each do |eatery| %>
+              <tr>
+                <td><%= link_to eatery.restaurant_name, admin_dashboard_path(eatery.id) %></td>
+                <td><%= link_to eatery.user.name, user_path(eatery.user_id) %></td>
+                <td><%= eatery.approved ?  "承認済み" : "未承認" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        
     </div>
   </div>
 </div>

@@ -1,22 +1,30 @@
 <div class="container">
-  <div class="row">
+    <div class="row">
       <div class="col-md-12">
         <% if user_signed_in? %>
           <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :content %>
+          <%= f.text_field :content, placeholder: "住所を入力" %>
           <%= f.select :model, options_for_select({ "飲食店" => "eatery", "宿泊施設" => "londing" }) %>
-          <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
-          <%= f.submit '検索' %>
+          <%= f.select :method, options_for_select({ "完全一致" => "perfect", "部分一致" => "partial" }) %>
+          <%= f.submit '検索', class: "btn btn-outline-secondary" %>
           <% end %>
         <% end %>
+      </div>
+    </div>
 
-        <% @eateries.each do |eatery| %>
+    <div class="row">
+      <% if @model == 'eatery' %>
+
+       <div class="col-md-12">
+
+        <% @eatery_records.each do |eatery| %>
         <div id="show_star-<%= eatery.id %>"></div>
           <script>
           var elem = document.querySelector('#show_star-<%= eatery.id %>');
           var opt = {
           starOn: "<%= asset_path('star-on.png') %>",
           starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
           readOnly: true,
           score: <%= eatery.reviews.average(:star).to_f %>
           };
@@ -30,5 +38,34 @@
         <% end %>
 
       </div>
+    </div>
   </div>
-</div>
+
+<% elsif @model == 'lodging' %>
+
+<% else %>
+      <div class="col-md-12">
+
+        <% @eatery_records.each do |eatery| %>
+        <div id="show_star-<%= eatery.id %>"></div>
+          <script>
+          var elem = document.querySelector('#show_star-<%= eatery.id %>');
+          var opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          readOnly: true,
+          score: <%= eatery.reviews.average(:star).to_f %>
+          };
+          raty(elem,opt);
+          </script>
+
+        <div>
+        <h3><%= link_to eatery.restaurant_name, eatery_path(eatery.id) %></h3>
+        <i class="fa-solid fa-location-dot"></i> <%= eatery.address %>
+        </div>
+        <% end %>
+
+      </div>
+
+<% end %>

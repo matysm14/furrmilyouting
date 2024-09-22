@@ -1,6 +1,6 @@
 class EateriesController < ApplicationController
   def index
-    @eateries = Eatery.where(approved: true)
+    #@eateries = Eatery.where(approved: true)
     #@star_average = @eatery.reviews.average(:star).to_f
   end
 

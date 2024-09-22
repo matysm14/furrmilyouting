@@ -1,27 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="mx-auto">
+    
+    <% unless @eatery.approved %>
+      <%= button_to "投稿を承認する", admin_approved_path(@eatery.id), method: :post, class: "btn btn-outline-secondary" %>
+    <% end %>
 
-        <h5>店舗名</h5>
-        <%= @eatery.restaurant_name %>
-        <h5>住所</h5>
-        <%= @eatery.address %>
-        <h5>電話番号</h5>
-        <%= @eatery.phone_number %>
-        <h5>URL</h5>
-        <%= @eatery.home_page %>
-        <h5>カテゴリ</h5>
-        <% @categories.each do |category| %>
-        <%= category.name %>
-        <% end %></br>
+      <table class="table table-striped">
+        <tr>
+          <th>店舗名</th> <td><%= @eatery.restaurant_name %></td>
+        </tr>
+        <tr>
+          <th>住所</th> <td><%= @eatery.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th> <td><%= @eatery.phone_number %></td>
+        </tr>
+        <tr>
+          <th>URL</th> <td><%= @eatery.home_page %></td>
+        </tr>
+        <tr>
+          <th>カテゴリ</th>
+          <td>
+            <% @categories.each do |category| %>
+            <%= category.name %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
 
-        <%= link_to "編集", edit_admin_dashboard_path(@eatery.id), class: "btn btn-outline-secondary" %>
+        <%= link_to "編集", edit_admin_dashboard_path(@eatery.id), class: "btn btn-outline-success" %>  
         <%= link_to "削除", admin_dashboard_path(@eatery.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %>
-        <% unless @eatery.approved %>
-          <%= button_to "投稿を承認する", admin_approved_path(@eatery.id), method: :post %>
-        <% end %>
-     </div>
-
 
   </div>
 </div>

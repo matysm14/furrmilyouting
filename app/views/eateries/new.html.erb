@@ -3,7 +3,7 @@
     <div class="mx-auto">
 
       <%= form_with model: @eatery do |f| %>
-      <h5>店舗名</h5>
+      <h5>飲食店名</h5>
         <%= f.text_field :restaurant_name %>
       <h5>住所</h5>
         <%= f.text_field :address %>
@@ -20,7 +20,7 @@
         <% end %>
         <% end %></br>
 
-      <%= f.submit '登録申請' %>
+      <%= f.submit '登録申請', class: "btn btn-outline-success" %>
       <% end %>
     </div>
 

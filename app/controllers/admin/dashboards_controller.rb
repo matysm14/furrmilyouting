@@ -28,7 +28,7 @@ class Admin::DashboardsController < ApplicationController
  def destroy
   eatery = Eatery.find(params[:id])
   eatery.destroy
-  redirect_to admin_dashboard_path(@eatery.id)
+  redirect_to admin_dashboards_path
  end
 
  private

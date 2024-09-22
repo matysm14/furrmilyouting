@@ -6,9 +6,13 @@ class SearchesController < ApplicationController
 		@content = params[:content]
 		@method = params[:method]
 		if @model == 'eatery'
-			@records = Eatery.search_for(@content, @method)
+			@eatery_records = Eatery.where(approved: true).search_for(@content, @method)
+		elsif @model == 'lodging'
+			@lodging_records = Lodging.search_for(@content, @method)
 		else
-			@records = Lodging.search_for(@content, @method)
+			@eatery_records = Eatery.where(approved: true)
+			@lodging_records = Lodging.all
 		end
 	end
+
 end

@@ -1,15 +1,13 @@
 class Lodging < ApplicationRecord
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @lodging = Lodging.where("address LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @lodging = Lodging.where("address LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @lodging = Lodging.where("address LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @lodging = Lodging.where("address LIKE?","%#{word}%")
+  
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Lodging.where(address: content)
+    elsif method == 'partial'
+      Lodging.where('address LIKE ?', '%'+content+'%')
     else
-      @lodging = Lodging.all
+      Lodging.all
     end
+  
   end
 end
