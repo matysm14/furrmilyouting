@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2024_09_23_075934) do
     t.string "phone_number"
     t.text "home_page"
     t.integer "user_id"
-    t.boolean "approved"
+    t.boolean "approved", default: false
     t.integer "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2024_09_23_075934) do
   end
 
   create_table "l_catetories", force: :cascade do |t|
-    t.string "name"
+    t.string "name​"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -99,6 +99,9 @@ ActiveRecord::Schema.define(version: 2024_09_23_075934) do
     t.string "address"
     t.string "phone_number"
     t.text "home_page"
+    t.integer "user_id"
+    t.boolean "approved", default: false
+    t.integer "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -109,6 +112,7 @@ ActiveRecord::Schema.define(version: 2024_09_23_075934) do
     t.text "body"
     t.integer "user_id"
     t.integer "eatery_id"
+    t.integer "lodging_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

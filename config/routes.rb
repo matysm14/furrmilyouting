@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     post 'approved/:id', to: 'dashboards#approved', as: :approved
+    post 'approved/:id', to: 'lodging_dashboards#approved', as: :lodging_approved
     resources :dashboards, only: [:index, :show, :edit, :update, :destroy]
     resources :lodging_dashboards, only: [:index, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :destroy]

@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
 
-
+    <% unless @lodging.approved %>
+      <%= button_to "投稿を承認する", admin_lodging_approved_path(@lodging.id), method: :post, class: "btn btn-outline-secondary" %>
+    <% end %>
 
       <table class="table table-striped">
         <tr>
