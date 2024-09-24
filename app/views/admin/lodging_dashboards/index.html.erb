@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2>飲食店の申請履歴一覧</h2>
+      <h2>宿泊施設の申請履歴一覧</h2>
 
         <table class="table table-striped">
         　<thead>
             <tr>
-              <th>飲食店名</th>
+              <th>宿泊施設名</th>
               <th>申請者</th>
               <th>ステータス</th>
             </tr>
           </thead>
 
           <tbody>
-            <% @eatery.each do |eatery| %>
+            <% @lodging.each do |lodging| %>
               <tr>
-                <td><%= link_to eatery.restaurant_name, admin_dashboard_path(eatery.id) %></td>
-                <td><%= link_to eatery.user.name, user_path(eatery.user_id) %></td>
-                <td><%= eatery.approved ?  "承認済み" : "未承認" %></td>
+                <td><%= link_to lodging.lodging_name, admin_lodging_dashboard_path(lodging.id) %></td>
+                <td><%= link_to lodging.user.name, user_path(lodging.user_id) %></td>
+                <td><%= lodging.approved ?  "承認済み" : "未承認" %></td>
               </tr>
             <% end %>
           </tbody>
@@ -26,6 +26,3 @@
     </div>
   </div>
 </div>
-
-
-

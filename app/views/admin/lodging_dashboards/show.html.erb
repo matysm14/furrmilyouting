@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+
+
+
+      <table class="table table-striped">
+        <tr>
+          <th>店舗名</th> <td><%= @lodging.lodging_name %></td>
+        </tr>
+        <tr>
+          <th>住所</th> <td><%= @lodging.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th> <td><%= @lodging.phone_number %></td>
+        </tr>
+        <tr>
+          <th>URL</th> <td><%= @lodging.home_page %></td>
+        </tr>
+        <tr>
+          <th>カテゴリ</th>
+          <td>
+
+          </td>
+        </tr>
+      </table>
+
+        <%= link_to "編集", edit_admin_lodging_dashboard_path(@lodging.id), class: "btn btn-outline-success" %>
+        <%= link_to "削除", admin_lodging_dashboard_path(@lodging.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %>
+
+  </div>
+</div>

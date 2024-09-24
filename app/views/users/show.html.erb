@@ -23,12 +23,10 @@
     </div>
 
     <div class="col-md-3 offset-md-4">
-        <%= link_to "お気に入り一覧", root_path, class: "btn btn-outline-secondary btn-block" %>
-        </br>
-        <%= link_to "新規登録申請", new_eatery_path, class: "btn btn-outline-secondary btn-block" %>
+      
     </div>
 
-
+    <h5>口コミ投稿一覧</h5>
     <table class="table table-striped">
       <tbody>
         <% @user.reviews.each do |review| %>
@@ -61,3 +59,24 @@
 
   </div>
 </div>
+
+<footer>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-8">
+
+        <% if user_signed_in? %>
+          <h5>新規登録</h5>
+          <p>登録されていない飲食店や宿泊施設は登録申請ができます。</p>
+          <%= link_to "飲食店の新規登録申請", new_eatery_path %></br>
+          <%= link_to "宿泊施設の新規登録申請", new_lodging_path %>
+        <% end %>
+
+      </div>
+
+      <div class="col-md-3 offset-md-1">
+      </div>
+
+    </div>
+  </div>
+</footer>

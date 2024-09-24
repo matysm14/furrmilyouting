@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_13_021053) do
+ActiveRecord::Schema.define(version: 2024_09_23_075934) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,6 +79,21 @@ ActiveRecord::Schema.define(version: 2024_09_13_021053) do
     t.index ["eatery_id"], name: "index_eatery_categories_on_eatery_id"
   end
 
+  create_table "l_catetories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lodging_categories", force: :cascade do |t|
+    t.integer "lodging_id"
+    t.integer "l_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["l_category_id"], name: "index_lodging_categories_on_l_category_id"
+    t.index ["lodging_id"], name: "index_lodging_categories_on_lodging_id"
+  end
+
   create_table "lodgings", force: :cascade do |t|
     t.string "lodging_name"
     t.string "address"
@@ -116,4 +131,6 @@ ActiveRecord::Schema.define(version: 2024_09_13_021053) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "eatery_categories", "categories"
   add_foreign_key "eatery_categories", "eateries"
+  add_foreign_key "lodging_categories", "l_categories"
+  add_foreign_key "lodging_categories", "lodgings"
 end

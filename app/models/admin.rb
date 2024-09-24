@@ -5,6 +5,7 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :eateries, dependent: :destroy
+  has_many :lodgings, dependent: :destroy
   #has_many :users, dependent: :destroy
 
 end

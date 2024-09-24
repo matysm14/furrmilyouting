@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_image
-  has_many :eateries, dependent: :destroy
+  has_many :eateries
+  has_many :lodgings
   has_many :reviews, dependent: :destroy
   #belongs_to :admin
 
