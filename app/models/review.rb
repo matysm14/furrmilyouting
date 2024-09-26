@@ -2,7 +2,7 @@ class Review < ApplicationRecord
   has_many_attached :images
   belongs_to :user
   belongs_to :eatery
-  belongs_to :lodging
+  #belongs_to :lodging
 
   def get_image(width, height)
   unless image.attached?

@@ -2,7 +2,7 @@ class LodgingsController < ApplicationController
   def new
     @lodging = Lodging.new
   end
-  
+
   def create
     @lodging = Lodging.new(lodging_params)
     @lodging.user_id = current_user.id
@@ -11,12 +11,17 @@ class LodgingsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @new_review = Review.new
+    #@review = Review.find(params[:id])
+    @lodging = Lodging.find(params[:id])
+    #@categories = @lodging.categories
   end
-  
+
   private
 
   def lodging_params
-    params.require(:lodging).permit(:lodging_name, :address, :phone_number, :home_page, category_ids: [])
+    params.require(:lodging).permit(:lodging_name, :address, :phone_number, :home_page, l_category_ids: [])
   end
-  
+
 end

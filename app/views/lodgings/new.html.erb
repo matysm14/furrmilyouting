@@ -11,6 +11,14 @@
         <%= f.text_field :phone_number %>
       <h5>URL</h5>
         <%= f.text_area :home_page %>
+        
+      <h5><%= f.label :l_category, 'その他' %></h5>
+        <%= f.collection_check_boxes(:l_category_ids, Category.all, :id, :name) do |category| %>
+        <%= category.label do %>
+        <%= category.check_box %>
+        <%= category.text %>
+        <% end %>
+        <% end %></br>
 
       
       </br>

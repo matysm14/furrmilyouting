@@ -12,7 +12,7 @@
       <h5>URL</h5>
         <%= f.text_area :home_page %>
 
-      <h5><%= f.label :category, 'カテゴリ' %></h5>
+      <h5><%= f.label :category, 'その他' %></h5>
         <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
         <%= category.label do %>
         <%= category.check_box %>
