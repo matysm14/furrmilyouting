@@ -5,6 +5,11 @@ class Eatery < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :eatery_categories
   has_many :categories, through: :eatery_categories
+  has_many :favorites, dependent: :destroy
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
   def self.search_for(content, method)
     if method == 'perfect'

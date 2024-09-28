@@ -8,7 +8,7 @@ class Admin::LodgingDashboardsController < ApplicationController
   #@categories = @lodging.categories
   end
 
-  def approved
+  def lodging_approved
   lodging = Lodging.find(params[:id])
   lodging.update(approved: true)
   flash[:success] = "投稿が承認されました。"

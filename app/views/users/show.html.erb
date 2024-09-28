@@ -7,24 +7,20 @@
       <div>
         <%= flash[:notice] %>
       </div>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th><%= image_tag @user.get_profile_image(100,100) %></th>
-              <th>
-              <h3><%= @user.name %></h3>
-              </br>
-              <%= link_to "プロフィール編集", edit_user_path, class: "btn btn-outline-success btn-block" %>
-              </th>
-            </tr>
-          </thead>
+        <table class="table">
+          <tr>
+            <th><%= image_tag @user.get_profile_image(100,100) %></th>
+            <th><h3><%= @user.name %></h3></th>
+          </tr>
         </table>
-
-    </div>
+      </div>
 
     <div class="col-md-3 offset-md-4">
-      
+      <%= link_to "プロフィール編集", edit_user_path, class: "btn btn-outline-success btn-block" %>
+      <%= link_to "保存リスト", favorites_user_path(@user), class: "btn btn-outline-success btn-block" %>
+
     </div>
+
 
     <h5>口コミ投稿一覧</h5>
     <table class="table table-striped">

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+    <h5>保存した投稿一覧</h5>
+      <table class="table table-striped">
+        <tbody>
+
+          <% @favorite_eateries.each do |f|%>
+          <tr>
+            <td>
+            <%=f.restaurant_name %></br>
+            <%=f.address %>
+            </td>
+          </tr>
+          <% end %>
+
+       </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

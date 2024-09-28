@@ -11,16 +11,16 @@
         <%= f.text_field :phone_number %>
       <h5>URL</h5>
         <%= f.text_area :home_page %>
-        
+
       <h5><%= f.label :l_category, 'その他' %></h5>
-        <%= f.collection_check_boxes(:l_category_ids, Category.all, :id, :name) do |category| %>
+        <%= f.collection_check_boxes(:l_category_ids, LCategory.all, :id, :name) do |category| %>
         <%= category.label do %>
         <%= category.check_box %>
         <%= category.text %>
         <% end %>
         <% end %></br>
 
-      
+
       </br>
       <%= link_to "戻る", user_path(current_user), class: "btn btn-outline-secondary" %>
       <%= f.submit '登録申請', class: "btn btn-outline-success" %>

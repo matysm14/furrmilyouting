@@ -24,6 +24,12 @@ class UsersController < ApplicationController
     flash[:notice] = 'アカウント情報を削除しました。'
     redirect_to :root
   end
+  
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:eatery_id)
+    @favorite_eateries = Eatery.find(favorites)
+  end
 
 private
 

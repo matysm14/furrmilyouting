@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :eateries
   has_many :lodgings
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   #belongs_to :admin
 
   def get_profile_image(width, height)
