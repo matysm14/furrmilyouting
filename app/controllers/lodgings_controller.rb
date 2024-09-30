@@ -12,10 +12,10 @@ class LodgingsController < ApplicationController
 
   def show
     @user = current_user
-    @new_review = Review.new
+    @lodging_review = Review.new
     #@review = Review.find(params[:id])
     @lodging = Lodging.find(params[:id])
-    #@categories = @lodging.categories
+    @categories = @lodging.l_categories
   end
 
   private

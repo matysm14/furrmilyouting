@@ -13,7 +13,7 @@
         <%= f.text_area :home_page %>
 
       <h5><%= f.label :l_category, 'その他' %></h5>
-        <%= f.collection_check_boxes(:l_category_ids, LCategory.all, :id, :name) do |category| %>
+        <%= f.collection_check_boxes(:l_category_ids, LCategory.all, :id, :name, include_hidden: false) do |category| %>
         <%= category.label do %>
         <%= category.check_box %>
         <%= category.text %>

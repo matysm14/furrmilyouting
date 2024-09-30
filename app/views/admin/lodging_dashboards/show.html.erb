@@ -19,9 +19,11 @@
           <th>URL</th> <td><%= @lodging.home_page %></td>
         </tr>
         <tr>
-          <th>カテゴリ</th>
+          <th>その他</th>
           <td>
-
+            <% @categories.each do |category| %>
+            <%= category.name %>
+            <% end %>
           </td>
         </tr>
       </table>

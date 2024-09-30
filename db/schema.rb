@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_27_062914) do
+ActiveRecord::Schema.define(version: 2024_09_30_062247) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -101,6 +101,16 @@ ActiveRecord::Schema.define(version: 2024_09_27_062914) do
     t.index ["lodging_id"], name: "index_lodging_categories_on_lodging_id"
   end
 
+  create_table "lodging_reviews", force: :cascade do |t|
+    t.integer "star"
+    t.string "title"
+    t.text "body"
+    t.integer "user_id"
+    t.integer "lodging_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "lodgings", force: :cascade do |t|
     t.string "lodging_name"
     t.string "address"
@@ -119,7 +129,6 @@ ActiveRecord::Schema.define(version: 2024_09_27_062914) do
     t.text "body"
     t.integer "user_id"
     t.integer "eatery_id"
-    t.integer "lodging_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

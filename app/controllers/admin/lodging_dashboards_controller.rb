@@ -5,10 +5,10 @@ class Admin::LodgingDashboardsController < ApplicationController
 
   def show
   @lodging = Lodging.find(params[:id])
-  #@categories = @lodging.categories
+  @categories = @lodging.l_categories
   end
 
-  def lodging_approved
+  def approved
   lodging = Lodging.find(params[:id])
   lodging.update(approved: true)
   flash[:success] = "投稿が承認されました。"

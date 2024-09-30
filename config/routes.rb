@@ -1,19 +1,24 @@
 Rails.application.routes.draw do
 
+  get 'lodging_reviews/create'
+  get 'lodging_reviews/edit'
+  get 'lodging_reviews/update'
+  get 'lodging_reviews/destroy'
   devise_for :users
   root to: 'homes#top'
   get 'homes/about', to: 'homes#about', as: :about
   resources :users, only: [:show, :edit, :update, :destroy] do
-    member do 
+    member do
       get :favorites
     end
-  end 
+  end
   resources :eateries, only: [:new, :create, :show] do
     resource :favorite, only: [:create, :destroy]
-  end 
+  end
   resources :reviews, only: [:create, :edit, :update, :destroy]
   resources :lodgings, only: [:new, :create, :show]
   get '/search', to: 'searches#search'
+  resources :lodging_reviews, only: [:create, :edit, :update, :destroy]
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
@@ -22,7 +27,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     post 'approved/:id', to: 'dashboards#approved', as: :approved
-    post 'approved/:id', to: 'lodging_dashboards#approved', as: :lodging_approved
+    post 'lodging_approved/:id', to: 'lodging_dashboards#approved', as: :lodging_approved
     resources :dashboards, only: [:index, :show, :edit, :update, :destroy]
     resources :lodging_dashboards, only: [:index, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :destroy]

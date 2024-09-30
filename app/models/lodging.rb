@@ -2,7 +2,7 @@ class Lodging < ApplicationRecord
 
   belongs_to :user
   belongs_to :admin, optional: true
-  has_many :reviews, dependent: :destroy
+  has_many :lodging_reviews, dependent: :destroy
   has_many :lodging_categories
   has_many :l_categories, through: :lodging_categories
 

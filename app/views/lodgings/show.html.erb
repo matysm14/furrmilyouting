@@ -19,7 +19,9 @@
           <tr>
             <th><i class="fa-regular fa-clipboard"></i> その他</th>
             <td>
-              
+              <% @categories.each do |category| %>
+              <%= category.name %>
+              <% end %>
             </td>
           </tr>
         </table>
@@ -47,7 +49,7 @@
       <div class="col-md-5">
         <h5>口コミ</h5>
 
-        <%= form_with model: @new_review do |f| %>
+        <%= form_with model: @lodging_review do |f| %>
         <div class="form-group position-static">
           <div id="post_raty"></div>
             <script>
@@ -55,7 +57,7 @@
             var opt = {
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
-            scoreName: 'review[star]',
+            scoreName: 'lodging_review[star]',
             };
             raty(elem,opt);
             </script>
