@@ -16,9 +16,12 @@ Rails.application.routes.draw do
     resource :favorite, only: [:create, :destroy]
   end
   resources :reviews, only: [:create, :edit, :update, :destroy]
+
   resources :lodgings, only: [:new, :create, :show]
-  get '/search', to: 'searches#search'
   resources :lodging_reviews, only: [:create, :edit, :update, :destroy]
+
+  get '/search', to: 'searches#search'
+
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
@@ -31,6 +34,10 @@ Rails.application.routes.draw do
     resources :dashboards, only: [:index, :show, :edit, :update, :destroy]
     resources :lodging_dashboards, only: [:index, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :destroy]
+  end
+
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

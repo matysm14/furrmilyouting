@@ -15,7 +15,7 @@
     <div class="row">
       <% if @model == 'eatery' %>
 
-       <div class="col-md-12">
+       <div class="col-md-5 offset-md-1">
 
         <% @eatery_records.each do |eatery| %>
         <div id="show_star-<%= eatery.id %>"></div>
@@ -42,7 +42,7 @@
   </div>
 
 <% elsif @model == 'lodging' %>
-      <div class="col-md-12">
+      <div class="col-md-5 offset-md-1">
 
         <% @lodging_records.each do |lodging| %>
         <div id="show_star-<%= lodging.id %>"></div>
@@ -53,7 +53,7 @@
           starOff: "<%= asset_path('star-off.png') %>",
           starHalf: "<%= asset_path('star-half.png') %>",
           readOnly: true,
-          score: <%= lodging.reviews.average(:star).to_f %>
+          score: <%= lodging.lodging_reviews.average(:star).to_f %>
           };
           raty(elem,opt);
           </script>
@@ -67,7 +67,7 @@
       </div>
 
 <% else %>
-      <div class="col-md-12">
+      <div class="col-md-5 offset-md-1">
 
         <% @eatery_records.each do |eatery| %>
         <div id="show_star-<%= eatery.id %>"></div>
@@ -89,7 +89,7 @@
         </div>
         <% end %>
 
-        <% @lodging_records.each do |lodging| %>
+       <% @lodging_records.each do |lodging| %>
         <div id="show_star-<%= lodging.id %>"></div>
           <script>
           var elem = document.querySelector('#show_star-<%= lodging.id %>');
@@ -98,7 +98,7 @@
           starOff: "<%= asset_path('star-off.png') %>",
           starHalf: "<%= asset_path('star-half.png') %>",
           readOnly: true,
-          score: <%= lodging.reviews.average(:star).to_f %>
+          score: <%= lodging.lodging_reviews.average(:star).to_f %>
           };
           raty(elem,opt);
           </script>
@@ -110,5 +110,11 @@
         <% end %>
 
       </div>
+      
+      <div class="col-md-6">
+        <div id="map"></div>
+      </div>
+      
+      <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
 
 <% end %>

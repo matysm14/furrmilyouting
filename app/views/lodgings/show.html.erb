@@ -35,9 +35,9 @@
   <div class="row">
     <div class="col-md-12">
       <h5>投稿画像</h5>
-      <% @lodging.reviews.each do |reviews| %>
+      <% @lodging.lodging_reviews.each do |r| %>
         <div>
-          <% reviews.images.each do |images| %>
+          <% r.images.each do |images| %>
               <%= image_tag images, style: "width: 100px; height: 100px" %>
           <% end %>
         </div>
@@ -78,7 +78,7 @@
         <h5>口コミ一覧</h5>
         <table class="table table-striped">
           <tbody>
-            <% @lodging.reviews.each do |review| %>
+            <% @lodging.lodging_reviews.each do |review| %>
             <tr>
               <td><%= image_tag review.user.get_profile_image(80,80) %></br>
               <%= review.user.name %></td>

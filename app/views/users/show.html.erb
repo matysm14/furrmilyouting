@@ -16,8 +16,10 @@
       </div>
 
     <div class="col-md-3 offset-md-4">
+      <% if @user.email != "guest@example.com" %>
       <%= link_to "プロフィール編集", edit_user_path, class: "btn btn-outline-success btn-block" %>
       <%= link_to "保存リスト", favorites_user_path(@user), class: "btn btn-outline-success btn-block" %>
+      <% end %>
 
     </div>
 
@@ -28,6 +30,7 @@
         <% @user.reviews.each do |review| %>
           <tr>
           <td>
+            <h6><%= review.eatery.restaurant_name %></h6>
             <div id="show_star-<%= review.id %>"></div>
               <script>
                 var elem = document.querySelector('#show_star-<%= review.id %>');
@@ -48,6 +51,33 @@
           </td>
           <td><%= link_to "編集", edit_review_path(review.id), class: "btn btn-outline-success" %></td>
           <td><%= link_to "削除", review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></td>
+          </tr>
+        <% end %>
+
+        <% @user.lodging_reviews.each do |review| %>
+          <tr>
+          <td>
+            <h6><%= review.lodging.lodging_name %></h6>
+            <div id="show_star-<%= review.id %>"></div>
+              <script>
+                var elem = document.querySelector('#show_star-<%= review.id %>');
+                var opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                readOnly: true,
+                score: <%= review.star %>
+                };
+                raty(elem,opt);
+              </script>
+
+            <%= review.title %></br>
+            <%= review.body %></br>
+            <% review.images.each do |image| %>
+              <%= image_tag image, style: "width: 100px; height: 100px" %>
+            <% end %>
+          </td>
+          <td><%= link_to "編集", edit_lodging_review_path(review.id), class: "btn btn-outline-success" %></td>
+          <td><%= link_to "削除", lodging_review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></td>
           </tr>
         <% end %>
       </tbody>

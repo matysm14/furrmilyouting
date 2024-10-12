@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
 			@lodging_records = Lodging.search_for(@content, @method)
 		else
 			@eatery_records = Eatery.where(approved: true)
-			@lodging_records = Lodging.all
+			@lodging_records = Lodging.where(approved: true)
 		end
 	end
 

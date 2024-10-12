@@ -12,7 +12,7 @@ class LodgingsController < ApplicationController
 
   def show
     @user = current_user
-    @lodging_review = Review.new
+    @lodging_review = LodgingReview.new
     #@review = Review.find(params[:id])
     @lodging = Lodging.find(params[:id])
     @categories = @lodging.l_categories
