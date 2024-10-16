@@ -20,17 +20,31 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def withdraw
     @user = User.find(params[:id])
-    @user.destroy
-    flash[:notice] = 'アカウント情報を削除しました。'
-    redirect_to :root
+    @user.update(is_valid: false)
+    reset_session
+    redirect_to root_path
   end
+
+
+  #def destroy
+    #@user = User.find(params[:id])
+    #@user.destroy
+    #flash[:notice] = 'アカウント情報を削除しました。'
+    #redirect_to :root
+  #end
 
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:eatery_id)
     @favorite_eateries = Eatery.find(favorites)
+  end
+
+  def lodging_favorites
+    @user = User.find(params[:id])
+    favorites = LodgingFavorite.where(user_id: @user.id).pluck(:lodging_id)
+    @favorite_lodging = Lodging.find(favorites)
   end
 
 private

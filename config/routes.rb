@@ -10,14 +10,20 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update, :destroy] do
     member do
       get :favorites
+      get :lodging_favorites
+      patch :withdraw
+      put :withdraw
     end
   end
+
   resources :eateries, only: [:new, :create, :show] do
     resource :favorite, only: [:create, :destroy]
   end
   resources :reviews, only: [:create, :edit, :update, :destroy]
 
-  resources :lodgings, only: [:new, :create, :show]
+  resources :lodgings, only: [:new, :create, :show] do
+    resource :lodging_favorite, only: [:create, :destroy]
+  end
   resources :lodging_reviews, only: [:create, :edit, :update, :destroy]
 
   get '/search', to: 'searches#search'
@@ -33,7 +39,12 @@ Rails.application.routes.draw do
     post 'lodging_approved/:id', to: 'lodging_dashboards#approved', as: :lodging_approved
     resources :dashboards, only: [:index, :show, :edit, :update, :destroy]
     resources :lodging_dashboards, only: [:index, :show, :edit, :update, :destroy]
-    resources :users, only: [:index, :destroy]
+    resources :users, only: [:index, :destroy] do
+      member do
+        patch :withdraw
+        put :withdraw
+      end
+    end
   end
 
   devise_scope :user do

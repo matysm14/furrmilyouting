@@ -1,108 +1,110 @@
-
-
 <div class="container">
   <div class="row">
-
     <div class="col-md-5">
-      <div>
-        <%= flash[:notice] %>
-      </div>
+      <div><%= flash[:notice] %></div>
         <table class="table">
           <tr>
             <th><%= image_tag @user.get_profile_image(100,100) %></th>
-            <th><h3><%= @user.name %></h3></th>
+            <th><h3><%= @user.name %></h3>
+            <% if @user.email != "guest@example.com" %>
+            <%= link_to edit_user_path, class: "btn btn-outline-success btn-block" do%>
+            <i class="fa-solid fa-pen"></i> プロフィール編集
+            <% end %>
+            <% end %>
+            <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block" do%>
+            <i class="fa-solid fa-bookmark"></i> 保存リスト
+            <% end %>
+            </th>
           </tr>
         </table>
-      </div>
+    </div>
 
     <div class="col-md-3 offset-md-4">
-      <% if @user.email != "guest@example.com" %>
-      <%= link_to "プロフィール編集", edit_user_path, class: "btn btn-outline-success btn-block" %>
-      <%= link_to "保存リスト", favorites_user_path(@user), class: "btn btn-outline-success btn-block" %>
-      <% end %>
+      <table class="table">
+        <tr>
+          <th>
+            <%= link_to "保存リスト（飲食店）", favorites_user_path(@user) %></br>
+            <%= link_to "保存リスト（宿泊施設）", lodging_favorites_user_path(@user) %>
 
+          </th>
+        </tr>
+      </table>
     </div>
 
+    <div class="col-md-12">
+      <h5>口コミ投稿一覧</h5>
+        <table class="table table-default table-striped-columns">
+          <tbody>
+            <% @user.reviews.each do |review| %>
+              <tr>
+                <td><h5><%= review.eatery.restaurant_name %></h5>
 
-    <h5>口コミ投稿一覧</h5>
-    <table class="table table-striped">
-      <tbody>
-        <% @user.reviews.each do |review| %>
-          <tr>
-          <td>
-            <h6><%= review.eatery.restaurant_name %></h6>
-            <div id="show_star-<%= review.id %>"></div>
-              <script>
-                var elem = document.querySelector('#show_star-<%= review.id %>');
-                var opt = {
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                readOnly: true,
-                score: <%= review.star %>
-                };
-                raty(elem,opt);
-               </script>
+                  <div id="show_star-<%= review.id %>"></div>
+                  <script>
+                  var elem = document.querySelector('#show_star-<%= review.id %>');
+                  var opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  readOnly: true,
+                  score: <%= review.star %>
+                  };
+                  raty(elem,opt);
+                  </script>
 
-            <%= review.title %></br>
-            <%= review.body %></br>
-            <% review.images.each do |image| %>
-              <%= image_tag image, style: "width: 100px; height: 100px" %>
+
+                </br>
+
+                <%= review.title %></br>
+                <%= review.body %></br>
+
+                <% review.images.each do |image| %>
+                <%= image_tag image, style: "width: 100px; height: 100px" %>
+                <% end %>
+                </td>
+
+                <th><%= link_to "編集", edit_review_path(review.id), class: "btn btn-outline-success" %></th>
+                <th><%= link_to "削除", review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></th>
+
+              </tr>
             <% end %>
-          </td>
-          <td><%= link_to "編集", edit_review_path(review.id), class: "btn btn-outline-success" %></td>
-          <td><%= link_to "削除", review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></td>
-          </tr>
-        <% end %>
+          </tbody>
+    　　  </table>
 
-        <% @user.lodging_reviews.each do |review| %>
-          <tr>
-          <td>
-            <h6><%= review.lodging.lodging_name %></h6>
-            <div id="show_star-<%= review.id %>"></div>
-              <script>
-                var elem = document.querySelector('#show_star-<%= review.id %>');
-                var opt = {
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                readOnly: true,
-                score: <%= review.star %>
-                };
-                raty(elem,opt);
-              </script>
+        <table class="table table-default table-striped-columns">
+          <tbody>
+            <% @user.lodging_reviews.each do |review| %>
+              <tr>
+                <td><h5><%= review.lodging.lodging_name %></h5>
 
-            <%= review.title %></br>
-            <%= review.body %></br>
-            <% review.images.each do |image| %>
-              <%= image_tag image, style: "width: 100px; height: 100px" %>
+                  <div id="show_star-<%= review.id %>"></div>
+                    <script>
+                　　    var elem = document.querySelector('#show_star-<%= review.id %>');
+                　　    var opt = {
+                　　    starOn: "<%= asset_path('star-on.png') %>",
+                　　    starOff: "<%= asset_path('star-off.png') %>",
+                　　    readOnly: true,
+                　　    score: <%= review.star %>
+                　　    };
+                　　    raty(elem,opt);
+              　　    </script>
+                </br>
+
+                <%= review.title %></br>
+                <%= review.body %></br>
+
+                <% review.images.each do |image| %>
+              　<%= image_tag image, style: "width: 100px; height: 100px" %>
+            　　　<% end %>
+                </td>
+
+                <th><%= link_to "編集", edit_lodging_review_path(review.id), class: "btn btn-outline-success" %></th>
+                <th> <%= link_to "削除", lodging_review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></th>
+
+              </tr>
             <% end %>
-          </td>
-          <td><%= link_to "編集", edit_lodging_review_path(review.id), class: "btn btn-outline-success" %></td>
-          <td><%= link_to "削除", lodging_review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+          </tbody>
+    　　  </table>
 
+    </div>
   </div>
 </div>
-
-<footer>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-8">
-
-        <% if user_signed_in? %>
-          <h5>新規登録</h5>
-          <p>登録されていない飲食店や宿泊施設は登録申請ができます。</p>
-          <%= link_to "飲食店の新規登録申請", new_eatery_path %></br>
-          <%= link_to "宿泊施設の新規登録申請", new_lodging_path %>
-        <% end %>
-
-      </div>
-
-      <div class="col-md-3 offset-md-1">
-      </div>
-
-    </div>
-  </div>
-</footer>

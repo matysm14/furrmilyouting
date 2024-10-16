@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_12_084433) do
+ActiveRecord::Schema.define(version: 2024_10_14_082912) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -103,6 +103,13 @@ ActiveRecord::Schema.define(version: 2024_10_12_084433) do
     t.index ["lodging_id"], name: "index_lodging_categories_on_lodging_id"
   end
 
+  create_table "lodging_favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "lodging_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "lodging_reviews", force: :cascade do |t|
     t.integer "star"
     t.string "title"
@@ -147,6 +154,7 @@ ActiveRecord::Schema.define(version: 2024_10_12_084433) do
     t.integer "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_valid", default: true, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

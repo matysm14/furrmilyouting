@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 mx-auto">
         <% if user_signed_in? %>
           <%= form_with url: search_path, method: :get, local: true do |f| %>
           <%= f.text_field :content, placeholder: "住所を入力" %>
@@ -11,35 +11,40 @@
         <% end %>
       </div>
     </div>
+</div>
 
-    <div class="row">
-      <% if @model == 'eatery' %>
+<% if @model == 'eatery' %>
+  <div class="card-list-container py-5">
+    <div class="card w-50 mx-auto mt-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <% @eatery_records.each do |eatery| %>
 
-       <div class="col-md-5 offset-md-1">
+              <span><%= link_to eatery.restaurant_name, eatery_path(eatery.id) %> | </span>
 
-        <% @eatery_records.each do |eatery| %>
-        <div id="show_star-<%= eatery.id %>"></div>
-          <script>
-          var elem = document.querySelector('#show_star-<%= eatery.id %>');
-          var opt = {
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          readOnly: true,
-          score: <%= eatery.reviews.average(:star).to_f %>
-          };
-          raty(elem,opt);
-          </script>
+              <span id="show_star-<%= eatery.id %>"></span>
+                <script>
+                var elem = document.querySelector('#show_star-<%= eatery.id %>');
+                var opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                readOnly: true,
+                score: <%= eatery.reviews.average(:star).to_f %>
+                };
+                raty(elem,opt);
+                </script>
 
-        <div>
-        <h3><%= link_to eatery.restaurant_name, eatery_path(eatery.id) %></h3>
-        <i class="fa-solid fa-location-dot"></i> <%= eatery.address %>
+              <p><i class="fa-solid fa-location-dot"></i> <%= eatery.address %></p>
+
+          </div>
         </div>
-        <% end %>
-
       </div>
     </div>
   </div>
+<% end %>
+
 
 <% elsif @model == 'lodging' %>
       <div class="col-md-5 offset-md-1">
@@ -110,11 +115,11 @@
         <% end %>
 
       </div>
-      
+
       <div class="col-md-6">
         <div id="map"></div>
       </div>
-      
-      <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+
+
 
 <% end %>

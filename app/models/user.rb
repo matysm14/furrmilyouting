@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :lodgings
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :lodging_favorites, dependent: :destroy
   #belongs_to :admin
   has_many :lodging_reviews, dependent: :destroy
 
