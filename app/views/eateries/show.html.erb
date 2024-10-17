@@ -2,7 +2,7 @@
   <div class="row">
 
       <div class="col-md-5">
-        <h2><%= @eatery.restaurant_name %></h2>
+        <h2 class="mt-4"><%= @eatery.restaurant_name %></h2>
         <table class="table table-default table-striped-columns">
           <tr>
             <th><i class="fa-solid fa-location-dot"></i> 住所</th> <td><%= @eatery.address %></td>
@@ -26,13 +26,13 @@
 
       <div class="col-md-3 offset-md-4">
         <% if @eatery.favorited_by?(current_user) %>
-        <p>
+        <p class= "mt-4">
           <%= link_to eatery_favorite_path(@eatery), method: :delete do %>
           <i class="fa-solid fa-bookmark"></i> 保存
           <% end %>
         </p>
         <% else %>
-        <p>
+        <p class= "mt-4">
           <%= link_to eatery_favorite_path(@eatery), method: :post do %>
           <i class="fa-regular fa-bookmark"></i> 保存
           <% end %>
@@ -55,7 +55,7 @@
   </div>
 
   <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-3">
         <h5 class="border-bottom secondary">口コミ</h5>
 
         <%= form_with model: @new_review do |f| %>
@@ -78,12 +78,12 @@
         <%= f.file_field :images, accept: "image/*", multiple: true %>
         </br>
         <%= f.hidden_field :eatery_id, value: @eatery.id %>
-        <%= f.submit '投稿', class: "btn btn-outline-success" %>
+        <%= f.submit '投稿', class: "btn btn-block btn-outline-success mb-4 mt-3" %>
         <% end %>
 
       </div>
 
-      <div class="col-md-6 offset-md-1">
+      <div class="col-md-8 offset-md-1">
         <h5 class="border-bottom secondary">口コミ一覧</h5>
         <table class="table table-striped">
           <tbody>

@@ -1,29 +1,32 @@
 <div class="container">
   <div class="row">
-    <div class="mx-auto">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto border border-3 rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">飲食店の新規登録申請フォーム</h5>
+        <div class="form-body p-4">
 
-      <%= form_with model: @eatery do |f| %>
-      <h5>飲食店名</h5>
-        <%= f.text_field :restaurant_name %>
-      <h5>住所</h5>
-        <%= f.text_field :address %>
-      <h5>電話番号</h5>
-        <%= f.text_field :phone_number %>
-      <h5>URL</h5>
-        <%= f.text_area :home_page %>
+          <%= form_with model: @eatery do |f| %>
+            <h7>飲食店名</h7><br>
+              <%= f.text_field :restaurant_name %><br>
+            <h7>住所</h7><br>
+              <%= f.text_field :address %><br>
+            <h7>電話番号</h7><br>
+              <%= f.text_field :phone_number %><br>
+            <h7>URL</h7><br>
+              <%= f.text_area :home_page %><br>
 
-      <h5><%= f.label :category, 'その他' %></h5>
-        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, include_hidden: false) do |category| %>
-        <%= category.label do %>
-        <%= category.check_box %>
-        <%= category.text %>
-        <% end %>
-        <% end %></br>
+            <h7><%= f.label :category, 'その他' %></h7><br>
+              <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, include_hidden: false) do |category| %>
+              <%= category.label do %>
+              <%= category.check_box %>
+              <%= category.text %>
+              <% end %>
+              <% end %></br>
 
-      <%= link_to "戻る", user_path(current_user), class: "btn btn-outline-secondary" %>
-      <%= f.submit '登録申請', class: "btn btn-outline-success" %>
+      <%= link_to "戻る", user_path(current_user), class: "btn btn-block btn-outline-secondary mt-4" %>
+      <%= f.submit '登録申請', class: "btn btn-block btn-outline-success" %>
       <% end %>
-    </div>
 
+      </div>
+    </div>
   </div>
 </div>

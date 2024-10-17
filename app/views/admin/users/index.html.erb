@@ -17,9 +17,9 @@
               <tr>
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
-                <td><%= user.withdraw ? "退会済み" : nil %></td>
-                <% unless @user.withdraw %>
-                  <td><%= button_to "削除", withdraw_admin_user_path(@user), method: :patch, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %></td>
+                <td><%= user.is_valid ? "退会済み" : nil %></td>
+                <% unless user.is_valid %>
+                  <td><%= button_to "削除", withdraw_admin_user_path(user), method: :patch, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %></td>
                 <% end %>
               </tr>
             <% end %>

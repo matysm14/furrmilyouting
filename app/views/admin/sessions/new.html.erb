@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto border border-3 rounded px-0 my-5">
       <div class="mx-auto">
 
-        <h5 class="text-dark bg-light py-4 mb-0">ログイン</h5>
+        <h5 class="text-dark bg-light p-4 mb-0">ログイン</h5>
+        <div class="form-body p-4">
 
           <%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
           <div class="field">
@@ -29,7 +30,7 @@
         <% end %>
 
         <%= render "admin/shared/links" %>
-
+        </div>
 
       </div>
     </div>
