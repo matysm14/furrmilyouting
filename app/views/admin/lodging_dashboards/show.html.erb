@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-8 mt-4">
 
-    <% unless @lodging.approved %>
-      <%= button_to "投稿を承認する", admin_lodging_approved_path(@lodging.id), method: :post, class: "btn btn-outline-secondary" %>
-    <% end %>
+      <% unless @lodging.approved %>
+        <%= button_to "投稿を承認する", admin_lodging_approved_path(@lodging.id), method: :post, class: "btn btn-outline-secondary" %>
+      <% end %>
 
-      <table class="table table-striped">
+      <table class="table mt-4">
         <tr>
           <th>店舗名</th> <td><%= @lodging.lodging_name %></td>
         </tr>
@@ -27,9 +28,21 @@
           </td>
         </tr>
       </table>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
 
-        <%= link_to "編集", edit_admin_lodging_dashboard_path(@lodging.id), class: "btn btn-outline-success" %>
-        <%= link_to "削除", admin_lodging_dashboard_path(@lodging.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %>
 
+  <div class="row">
+    <div class="col-md-4 mt-4">
+      <div class="d-flex">
+        <%= link_to "編集", edit_admin_lodging_dashboard_path(@lodging.id), class: "btn btn-outline-success d-inline-block w-50 mb-4 mr-1" %>
+        <%= link_to "削除", admin_lodging_dashboard_path(@lodging.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger d-inline-block w-50 mb-4" %>
+      </div>
+    </div>
+    <div class="col-md-8">
+    </div>
   </div>
 </div>
+

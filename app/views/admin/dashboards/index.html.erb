@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mt-4">
       <h2>飲食店の申請履歴一覧</h2>
 
-        <table class="table table-striped">
-        　<thead>
+        <table class="table">
+        　<thead class= "table-info">
             <tr>
               <th>飲食店名</th>
               <th>申請者</th>
@@ -16,7 +16,13 @@
             <% @eatery.each do |eatery| %>
               <tr>
                 <td><%= link_to eatery.restaurant_name, admin_dashboard_path(eatery.id) %></td>
-                <td><%= link_to eatery.user.name, user_path(eatery.user_id) %></td>
+                <td>
+                  <% if eatery.user %>
+                  <%= link_to eatery.user.name, user_path(eatery.user_id) %>
+                  <% else %>
+                  <%= "削除済ユーザー" %>
+                  <% end %>
+                </td>
                 <td><%= eatery.approved ?  "承認済み" : "未承認" %></td>
               </tr>
             <% end %>

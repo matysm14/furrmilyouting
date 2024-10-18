@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mt-4">
       <h2>アカウント一覧</h2>
 
-        <table class="table table-striped">
-        　<thead>
+        <table class="table">
+        　<thead class= "table-info">
             <tr>
               <th>ユーザー名</th>
               <th>メールアドレス</th>
-              <th></th>
+              <th>ステータス</th>
             </tr>
           </thead>
 
@@ -17,9 +17,10 @@
               <tr>
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
-                <td><%= user.is_valid ? "退会済み" : nil %></td>
-                <% unless user.is_valid %>
+                <% if user.is_valid %>
                   <td><%= button_to "削除", withdraw_admin_user_path(user), method: :patch, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %></td>
+                <% else %>
+                  <td><%= "削除済み" %></td>
                 <% end %>
               </tr>
             <% end %>

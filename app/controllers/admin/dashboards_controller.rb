@@ -22,7 +22,7 @@ class Admin::DashboardsController < ApplicationController
  def update
   eatery = Eatery.find(params[:id])
   eatery.update(eatery_params)
-  redirect_to admin_dashboard_path(@eatery.id)
+  redirect_to admin_dashboard_path(eatery.id)
  end
 
  def destroy

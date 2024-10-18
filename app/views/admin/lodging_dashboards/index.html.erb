@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mt-4">
       <h2>宿泊施設の申請履歴一覧</h2>
 
-        <table class="table table-striped">
-        　<thead>
+        <table class="table">
+        　<thead class= "table-info">
             <tr>
               <th>宿泊施設名</th>
               <th>申請者</th>
@@ -16,7 +16,13 @@
             <% @lodging.each do |lodging| %>
               <tr>
                 <td><%= link_to lodging.lodging_name, admin_lodging_dashboard_path(lodging.id) %></td>
-                <td><%= link_to lodging.user.name, user_path(lodging.user_id) %></td>
+                <td>
+                  <% if lodging.user %>
+                  <%= link_to lodging.user.name, user_path(lodging.user_id) %>
+                  <% else %>
+                  <%= "削除済ユーザー" %>
+                  <% end %>
+                </td>
                 <td><%= lodging.approved ?  "承認済み" : "未承認" %></td>
               </tr>
             <% end %>
