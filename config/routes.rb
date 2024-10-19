@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'lodging_reviews/edit'
   get 'lodging_reviews/update'
   get 'lodging_reviews/destroy'
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   root to: 'homes#top'
   get 'homes/about', to: 'homes#about', as: :about
   resources :users, only: [:show, :edit, :update, :destroy] do

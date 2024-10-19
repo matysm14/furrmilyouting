@@ -42,20 +42,22 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mt-3 mb-5">
       <h5 class="border-bottom secondary">投稿画像</h5>
-      <% @eatery.reviews.each do |reviews| %>
-        <div>
-          <% reviews.images.each do |images| %>
+        <% if @eatery.reviews.any? %>
+          <% @eatery.reviews.each do |reviews| %>
+            <% reviews.images.each do |images| %>
               <%= image_tag images, style: "width: 100px; height: 100px" %>
-          <% end %>
-        </div>
-      <% end %>
+            <% end %>
+           <% end %>
+        <% else %>
+          <div style="width: 100px; height: 100px; background-color: #fff;"></div>
+        <% end %>
     </div>
   </div>
 
   <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 mt-3">
         <h5 class="border-bottom secondary">口コミ</h5>
 
         <%= form_with model: @new_review do |f| %>
@@ -83,7 +85,7 @@
 
       </div>
 
-      <div class="col-md-8 offset-md-1">
+      <div class="col-md-8 offset-md-1 mt-3 mb-4">
         <h5 class="border-bottom secondary">口コミ一覧</h5>
         <table class="table table-striped">
           <tbody>

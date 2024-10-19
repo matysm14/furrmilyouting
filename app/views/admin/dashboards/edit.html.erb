@@ -4,30 +4,29 @@
       <h5 class="text-dark bg-light p-4 mb-0"></h5>
         <div class="form-body p-4">
 
-      <%= form_with model: @eatery do |f| %>
-        <h7>飲食店名</h7><br>
+          <%= form_with model: @eatery do |f| %>
+            <h7>飲食店名</h7><br>
           <%= f.text_field :restaurant_name %><br>
-        <h7>住所</h7><br>
+            <h7>住所</h7><br>
           <%= f.text_field :address %><br>
-        <h7>電話番号</h7><br>
+            <h7>電話番号</h7><br>
           <%= f.text_field :phone_number %><br>
-        <h7>URL</h7><br>
+            <h7>URL</h7><br>
           <%= f.text_area :home_page %><br>
-        <h7><%= f.label :category, 'カテゴリ' %></h7><br>
-        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
-        <%= category.label do %>
-        <%= category.check_box %>
-        <%= category.text %>
-        <% end %>
-        <% end %>
-        </br>
+            <h7><%= f.label :category, 'カテゴリ' %></h7><br>
+              <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
+              <%= category.label do %>
+              <%= category.check_box %>
+              <%= category.text %>
+              <% end %>
+              <% end %>
+          </br>
 
-        <div class="d-flex">
-
-          <%= link_to "戻る", admin_dashboard_path, class: "btn btn-block btn-outline-secondary mt-4 mr-1" %>
-          <%= f.submit '保存', class: "btn btn-block btn-outline-success mt-4" %>
-        </div>
-      <% end %>
+            <div class="d-flex">
+              <%= link_to "戻る", admin_dashboard_path, class: "btn btn-block btn-outline-secondary mt-4 mr-1" %>
+              <%= f.submit '保存', class: "btn btn-block btn-outline-success mt-4" %>
+            </div>
+          <% end %>
 
       </div>
     </div>

@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto border border-3 rounded px-0 my-5">
-
-        <h5 class="text-dark bg-light p-4 mb-0">プロフィール編集</h5>
+      <h5 class="text-dark bg-light p-4 mb-0">プロフィール編集</h5>
         <div class="form-body p-4">
 
           <%= form_with model: @user do |f| %>
@@ -11,20 +10,20 @@
             <label for="inputImage">プロフィール画像</label><br>
           <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %><br>
 
-
-          <%= link_to "戻る", user_path(current_user), class: "btn btn-block btn-outline-secondary mt-4" %>
-          <%= f.submit '更新', class: "btn btn-block btn-outline-success" %>
-          </br>
+          <div class="d-flex">
+          <%= link_to "戻る", user_path(current_user), class: "btn btn-block btn-outline-secondary mt-4 mr-1" %>
+          <%= f.submit '更新', class: "btn btn-block btn-outline-success mt-4" %>
+          </div>
+          
           <% if @user == current_user %>
-          <%= link_to withdraw_user_path(current_user), method: :patch, "data-confirm" => "本当に削除しますか?", class: 'text-danger' do %>
-          <i class="fa-regular fa-trash-can"></i> アカウントを削除する
-          <% end %>
+            <%= link_to withdraw_user_path(current_user), method: :patch, "data-confirm" => "本当に削除しますか?", class: 'text-danger' do %>
+            <i class="fa-regular fa-trash-can"></i> アカウントを削除する
+            <% end %>
           <% end %>
 
           <% end %>
+        
         </div>
-
-
     </div>
   </div>
 </div>

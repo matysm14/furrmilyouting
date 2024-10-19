@@ -1,22 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 mx-auto">
+    <div class="col-md-12 mx-auto mt-4">
+      <div class="input-group">
         <% if user_signed_in? %>
           <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :content, placeholder: "住所を入力" %>
-          <%= f.select :model, options_for_select({ "飲食店" => "eatery", "宿泊施設" => "londing" }) %>
-          <%= f.select :method, options_for_select({ "完全一致" => "perfect", "部分一致" => "partial" }) %>
-          <%= f.submit '検索', class: "btn btn-outline-secondary" %>
+            <div class="d-flex">
+              <%= f.text_field :content, class: "form-control mr-1", style: "width: 300px;", placeholder: "住所を入力" %>
+              <%= f.select :model, options_for_select({ "飲食店" => "eatery", "宿泊施設" => "lodging" }), { }, { class: 'form-control mr-1', style: "width: 130px;" } %>
+              <%= f.select :method, options_for_select({ "完全一致" => "perfect", "部分一致" => "partial" }), { }, { class: 'form-control mr-1', style: "width: 150px;" } %>
+              <%= f.button class: "btn btn-outline-secondary", style: "min-width: 45px;" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
+      </div>
     </div>
   </div>
 
-
-  <% if @model == 'eatery' %>
-    <div class="row">
-      <% @eatery_records.each do |eatery| %>
-        <div class="col-md-3 offset-md-1">
+  <div class="row">
+    <div class="col-md-5 offset-md-1 mt-4">
+    
+      <% if @model == 'eatery' %>
+      
+        <% @eatery_records.each do |eatery| %>
           <div class="card">
             <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
               <div class="card-body">
@@ -40,16 +47,13 @@
                     </br>
                     <i class="fa-solid fa-location-dot"></i> <%= eatery.address %>
                 </div>
-
               </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
 
-  <% elsif @model == 'lodging' %>
+      <% elsif @model == 'lodging' %>
 
-      <% @lodging_records.each do |lodging| %>
-        <div class="col-md-3 offset-md-1">
+        <% @lodging_records.each do |lodging| %>
           <div class="card">
             <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
               <div class="card-body">
@@ -75,13 +79,12 @@
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
 
-  <% else %>
 
-      <% @eatery_records.each do |eatery| %>
-        <div class="col-md-3 offset-md-1">
+      <% else %>
+        <div class="d-flex">
+        <% @eatery_records.each do |eatery| %>
           <div class="card">
             <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
               <div class="card-body">
@@ -91,28 +94,25 @@
 
                 <div class="card-text">
                   <span id="show_star-<%= eatery.id %>"></span>
-                    <script>
-                    var elem = document.querySelector('#show_star-<%= eatery.id %>');
-                    var opt = {
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    starHalf: "<%= asset_path('star-half.png') %>",
-                    readOnly: true,
-                    score: <%= eatery.reviews.average(:star).to_f %>
-                    };
-                    raty(elem,opt);
-                    </script>
+                  <script>
+                  var elem = document.querySelector('#show_star-<%= eatery.id %>');
+                  var opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  readOnly: true,
+                  score: <%= eatery.reviews.average(:star).to_f %>
+                  };
+                  raty(elem,opt);
+                  </script>
                   </br>
                   <i class="fa-solid fa-location-dot"></i> <%= eatery.address %>
                 </div>
-
               </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
 
-      <% @lodging_records.each do |lodging| %>
-        <div class="col-md-3 offset-md-1">
+        <% @lodging_records.each do |lodging| %>
           <div class="card">
             <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
               <div class="card-body">
@@ -138,12 +138,14 @@
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
+      </div>
+      
+    </div>
+
+    <div class="col-md-6">
+    </div>
+
       <% end %>
-
-        <div class="col-md-8">
-        </div>
-
-  <% end %>
   </div>
 </div>
