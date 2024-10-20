@@ -18,7 +18,7 @@
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
                 <% if user.is_valid %>
-                  <td><%= button_to "削除", withdraw_admin_user_path(user), method: :patch, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %></td>
+                  <td><%= button_to "削除", withdraw_admin_user_path(user), method: :patch, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger py-0" %></td>
                 <% else %>
                   <td><%= "削除済み" %></td>
                 <% end %>

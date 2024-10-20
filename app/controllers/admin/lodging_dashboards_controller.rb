@@ -16,7 +16,7 @@ class Admin::LodgingDashboardsController < ApplicationController
   end
   
   def edit
-  @Lodging = Lodging.find(params[:id])
+  @lodging = Lodging.find(params[:id])
   end
 
  def update
@@ -28,7 +28,7 @@ class Admin::LodgingDashboardsController < ApplicationController
  def destroy
   lodging = Lodging.find(params[:id])
   lodging.destroy
-  redirect_to admin_lodging_dashboards
+  redirect_to admin_lodging_dashboards_path
  end
  
  private
