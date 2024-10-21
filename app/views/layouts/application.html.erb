@@ -7,15 +7,15 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/5878c30bca.js" crossorigin="anonymous"></script>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="d-flex flex-column vh-100" style="display: flex; flex-direction: column;">
-    <header class= "text-dark pt-1 pb-1" style="background-color: #f8f2e5;">
+    <header class= "text-dark pt-1 pb-1" style="background-color: #d2e1d1;">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container px-3">
-          <a class="navbar-brand p-3" href="/"><%= image_tag('Logo.png') %></a>
+          <a class="navbar-brand p-3" href="<%= search_path %>"><%= image_tag('Logo.png') %></a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
             <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
       <%= yield %>
     </div>
 
-    <footer class="text-dark pt-4 pb-4" style="margin-top: auto; background-color: #f8f2e5;">
+    <footer class="text-dark pt-4 pb-4" style="margin-top: auto; background-color: #d2e1d1;">
       <div class="container mt-0">
         <div class="row">
 

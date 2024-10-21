@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5">
-      <div><%= flash[:notice] %></div>
-        <table class="table table-borderless">
+
+        <table class="table table-borderless mb-4">
           <tr>
             <th><%= image_tag @user.get_profile_image(100,100) %></th>
             <th><h3><%= @user.name %></h3>
@@ -12,10 +12,7 @@
               <% end %>
             <% end %>
             <%= link_to favorites_user_path(@user), class: "btn btn-outline-secondary btn-block mt-1 py-0" do%>
-              <i class="fa-solid fa-bookmark"></i> 飲食店保存リスト
-            <% end %>
-            <%= link_to lodging_favorites_user_path(@user), class: "btn btn-outline-secondary btn-block mt-1 py-0" do%>
-              <i class="fa-solid fa-bookmark"></i> 宿泊施設の保存リスト
+              <i class="fa-solid fa-bookmark"></i> 保存リスト
             <% end %>
             </th>
           </tr>
@@ -24,14 +21,19 @@
 
     <div class="col-md-3 offset-md-4">
     </div>
+  </div>
 
-    <div class="col-md-12 mt-4">
-      <h5 class="border-bottom secondary">口コミ投稿一覧</h5>
+  <div class="row">
+    <div class="col-md-12">
+
+      <h5>口コミ投稿一覧</h5>
         <table class="table table-default table-striped-columns">
           <tbody>
             <% @user.reviews.each do |review| %>
               <tr>
-                <td><h5><%= review.eatery.restaurant_name %></h5>
+                <td>
+                  <div style="display: flex; align-items: center;">
+                  <h5 class="mt-2 mr-5"><%= review.eatery.restaurant_name %></h5>
 
                   <div id="show_star-<%= review.id %>"></div>
                   <script>
@@ -44,20 +46,20 @@
                   };
                   raty(elem,opt);
                   </script>
-
-
-                </br>
+                </div>
 
                 <%= review.title %></br>
                 <%= review.body %></br>
-
+                
                 <% review.images.each do |image| %>
-                <%= image_tag image, style: "width: 100px; height: 100px" %>
+                <%= image_tag image, class: "review-image image-container" %>
                 <% end %>
                 </td>
 
-                <th><%= link_to "編集", edit_review_path(review.id), class: "btn btn-outline-success" %></th>
-                <th><%= link_to "削除", review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></th>
+                <th style="display: flex; justify-content: flex-end;">
+                  <span><%= link_to "編集", edit_review_path(review.id), class: "btn btn-outline-success mr-3" %></span>
+                  <span><%= link_to "削除", review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></span>
+                </th>
 
               </tr>
             <% end %>
@@ -68,7 +70,9 @@
           <tbody>
             <% @user.lodging_reviews.each do |review| %>
               <tr>
-                <td><h5><%= review.lodging.lodging_name %></h5>
+                <td>
+                  <div style="display: flex; align-items: center;">
+                  <h5 class="mt-2 mr-5"><%= review.lodging.lodging_name %></h5>
 
                   <div id="show_star-<%= review.id %>"></div>
                     <script>
@@ -81,24 +85,26 @@
                 　　    };
                 　　    raty(elem,opt);
               　　    </script>
-                </br>
+              　</div>
 
                 <%= review.title %></br>
                 <%= review.body %></br>
-
+                
                 <% review.images.each do |image| %>
-              　<%= image_tag image, style: "width: 100px; height: 100px" %>
-            　　　<% end %>
+                  <%= image_tag image, class: "review-image image-container" %>
+                <% end %>
                 </td>
 
-                <th><%= link_to "編集", edit_lodging_review_path(review.id), class: "btn btn-outline-success" %></th>
-                <th> <%= link_to "削除", lodging_review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></th>
+                <th style="display: flex; justify-content: flex-end;">
+                  <span><%= link_to "編集", edit_lodging_review_path(review.id), class: "btn btn-outline-success mr-3" %></span>
+                  <span><%= link_to "削除", lodging_review_path(review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-outline-danger" %></span>
+                </th>
 
               </tr>
             <% end %>
           </tbody>
     　　  </table>
-
-    </div>
+    　</div>
   </div>
+
 </div>

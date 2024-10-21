@@ -14,3 +14,9 @@
  *= require_self
  */
 
+.image-container {
+  display: inline-block;
+  width: 100px; /* 画像の幅を100pxに指定 */
+  height: 100px; /* 画像の高さを100pxに指定 */
+  margin-right: 5px; /* 画像間の隙間を設定 */
+}

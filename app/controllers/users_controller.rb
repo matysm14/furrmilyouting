@@ -37,14 +37,10 @@ class UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:eatery_id)
-    @favorite_eateries = Eatery.find(favorites)
-  end
-
-  def lodging_favorites
-    @user = User.find(params[:id])
-    favorites = LodgingFavorite.where(user_id: @user.id).pluck(:lodging_id)
-    @favorite_lodging = Lodging.find(favorites)
+    favorites_eatery = Favorite.where(user_id: @user.id).pluck(:eatery_id)
+    favorites_lodging = LodgingFavorite.where(user_id: @user.id).pluck(:lodging_id)
+    @favorite_eateries = Eatery.find(favorites_eatery)
+    @favorite_lodging = Lodging.find(favorites_lodging)
   end
 
 private

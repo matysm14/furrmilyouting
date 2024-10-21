@@ -21,10 +21,11 @@
               <%= category.text %>
               <% end %>
               <% end %></br>
-
-      <%= link_to "戻る", user_path(current_user), class: "btn btn-block btn-outline-secondary mt-4" %>
-      <%= f.submit '登録申請', class: "btn btn-block btn-outline-success" %>
-      <% end %>
+            <div class="d-flex">
+              <%= link_to "戻る", user_path(current_user), class: "btn btn-block btn-outline-secondary mt-4 mr-1" %>
+              <%= f.submit '登録申請', class: "btn btn-block btn-outline-success mt-4" %>
+            </div>
+          <% end %>
 
       </div>
     </div>
