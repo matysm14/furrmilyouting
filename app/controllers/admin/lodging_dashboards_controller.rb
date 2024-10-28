@@ -1,4 +1,7 @@
 class Admin::LodgingDashboardsController < ApplicationController
+ layout 'admin'
+ before_action :authenticate_admin!
+
   def index
   @lodging = Lodging.all
   end
@@ -14,7 +17,7 @@ class Admin::LodgingDashboardsController < ApplicationController
   flash[:success] = "投稿が承認されました。"
   redirect_to admin_lodging_dashboards_path
   end
-  
+
   def edit
   @lodging = Lodging.find(params[:id])
   end
@@ -30,7 +33,7 @@ class Admin::LodgingDashboardsController < ApplicationController
   lodging.destroy
   redirect_to admin_lodging_dashboards_path
  end
- 
+
  private
 
  def lodging_params

@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mt-4">
 
     <h5>保存リスト</h5>
-      <table class="table table-striped">
+      <table class="table table-default table-striped-columns">
         <tbody>
 
           <% @favorite_eateries.each do |f|%>
           <tr>
             <td>
-            <%=f.restaurant_name %></br>
+            <h5><%=f.restaurant_name %></h5></br>
             <%=f.address %>
             </td>
           </tr>
@@ -24,7 +24,7 @@
           <% @favorite_lodging.each do |f|%>
           <tr>
             <td>
-            <%=f.lodging_name %></br>
+            <h5><%=f.lodging_name %></h5></ht></br>
             <%=f.address %>
             </td>
           </tr>

@@ -21,7 +21,7 @@ class LodgingsController < ApplicationController
   private
 
   def lodging_params
-    params.require(:lodging).permit(:lodging_name, :address, :phone_number, :home_page, l_category_ids: [])
+    params.require(:lodging).permit(:lodging_name, :address, :phone_number, :home_page, :image, l_category_ids: [])
   end
 
 end

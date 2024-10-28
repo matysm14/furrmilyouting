@@ -1,4 +1,3 @@
-<div><%= flash[:notice] %></div>
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto mt-4">
@@ -20,9 +19,9 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12 mt-4">
-      <div class="d-flex">
-        
+    <div class="col-md-12 mt-4 mb-5">
+      <div class="card-container d-flex">
+
         <% if @model == 'eatery' %>
           <% @eatery_records.each do |eatery| %>
             <div class="card">
@@ -32,17 +31,18 @@
                     <h5><%= link_to eatery.restaurant_name, eatery_path(eatery.id) %></h5>
                   </div>
                   <div class="card-text">
-                    <div id="show_star-<%= eatery.id %>"></div>
+                    <div id="show_star_eatery-<%= eatery.id %>"></div>
                       <script>
-                      var elem = document.querySelector('#show_star-<%= eatery.id %>');
-                      var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      starHalf: "<%= asset_path('star-half.png') %>",
-                      readOnly: true,
-                      score: <%= eatery.reviews.average(:star).to_f %>
-                      };
-                      raty(elem,opt);
+                        $('#show_star_eatery-<%= eatery.id %>').empty();
+                        var elem = document.querySelector('#show_star_eatery-<%= eatery.id %>');
+                        var opt = {
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        starHalf: "<%= asset_path('star-half.png') %>",
+                        readOnly: true,
+                        score: <%= eatery.reviews.average(:star).to_f %>
+                        };
+                        raty(elem,opt);
                       </script>
                       </br>
                       <i class="fa-solid fa-location-dot"></i> <%= eatery.address %>
@@ -60,17 +60,18 @@
                     <h5><%= link_to lodging.lodging_name, lodging_path(lodging.id) %></h5>
                   </div>
                   <div class="card-text">
-                    <div id="show_star-<%= lodging.id %>"></div>
+                    <div id="show_star_loging-<%= lodging.id %>"></div>
                       <script>
-                      var elem = document.querySelector('#show_star-<%= lodging.id %>');
-                      var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      starHalf: "<%= asset_path('star-half.png') %>",
-                      readOnly: true,
-                      score: <%= lodging.lodging_reviews.average(:star).to_f %>
-                      };
-                      raty(elem,opt);
+                        $('#show_star_lodging-<%= lodging.id %>').empty();
+                        var elem = document.querySelector('#show_star_loging-<%= lodging.id %>');
+                        var opt = {
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        starHalf: "<%= asset_path('star-half.png') %>",
+                        readOnly: true,
+                        score: <%= lodging.lodging_reviews.average(:star).to_f %>
+                        };
+                        raty(elem,opt);
                       </script>
                       </br>
                       <i class="fa-solid fa-location-dot"></i> <%= lodging.address %>
@@ -88,17 +89,18 @@
                     <h5><%= link_to eatery.restaurant_name, eatery_path(eatery.id) %></h5>
                   </div>
                   <div class="card-text">
-                    <div id="show_star-<%= eatery.id %>"></div>
+                    <div id="show_star_eatery-<%= eatery.id %>"></div>
                       <script>
-                      var elem = document.querySelector('#show_star-<%= eatery.id %>');
-                      var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      starHalf: "<%= asset_path('star-half.png') %>",
-                      readOnly: true,
-                      score: <%= eatery.reviews.average(:star).to_f %>
-                      };
-                      raty(elem,opt);
+                        $('#show_star_eatery-<%= eatery.id %>').empty();
+                        var elem = document.querySelector('#show_star_eatery-<%= eatery.id %>');
+                        var opt = {
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        starHalf: "<%= asset_path('star-half.png') %>",
+                        readOnly: true,
+                        score: <%= eatery.reviews.average(:star).to_f %>
+                        };
+                        raty(elem,opt);
                       </script>
                       </br>
                       <i class="fa-solid fa-location-dot"></i> <%= eatery.address %>
@@ -115,17 +117,18 @@
                     <h5><%= link_to lodging.lodging_name, lodging_path(lodging.id) %></h5>
                   </div>
                   <div class="card-text">
-                    <div id="show_star-<%= lodging.id %>"></div>
+                    <div id="show_star_lodging-<%= lodging.id %>"></div>
                       <script>
-                      var elem = document.querySelector('#show_star-<%= lodging.id %>');
-                      var opt = {
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      starHalf: "<%= asset_path('star-half.png') %>",
-                      readOnly: true,
-                      score: <%= lodging.lodging_reviews.average(:star).to_f %>
-                      };
-                      raty(elem,opt);
+                        $('#show_star_lodging-<%= lodging.id %>').empty();
+                        var elem = document.querySelector('#show_star_lodging-<%= lodging.id %>');
+                        var opt = {
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        starHalf: "<%= asset_path('star-half.png') %>",
+                        readOnly: true,
+                        score: <%= lodging.lodging_reviews.average(:star).to_f %>
+                        };
+                        raty(elem,opt);
                       </script>
                       </br>
                       <i class="fa-solid fa-location-dot"></i> <%= lodging.address %>
@@ -133,10 +136,10 @@
                 </div>
             </div>
           <% end %>
-  
+
         <% end %>
       </div>
     </div>
-    
+
   </div>
 </div>
