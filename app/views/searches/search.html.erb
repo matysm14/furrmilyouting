@@ -26,7 +26,7 @@
           <% @eatery_records.each do |eatery| %>
             <div class="card">
               <% if eatery.image.attached? %>
-                <%= image_tag eatery.image, class:"card-img-top", alt:"Image" %>
+                <%= image_tag eatery.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0").processed, class:"card-img-top", alt:"Image" %>
               <% else %>
                 <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
               <% end %>
@@ -59,7 +59,7 @@
           <% @lodging_records.each do |lodging| %>
             <div class="card">
               <% if lodging.image.attached? %>
-                <%= image_tag lodging.image, class:"card-img-top", alt:"Image" %>
+                <%= image_tag lodging.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0").processed, class:"card-img-top", alt:"Image" %>
               <% else %>
                 <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
               <% end %>
@@ -92,7 +92,7 @@
           <% @eatery_records.each do |eatery| %>
             <div class="card">
               <% if eatery.image.attached? %>
-                <%= image_tag eatery.image, class:"card-img-top", alt:"Image" %>
+                <%= image_tag eatery.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0").processed, class:"card-img-top", alt:"Image" %>
               <% else %>
                 <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
               <% end %>
@@ -124,7 +124,7 @@
           <% @lodging_records.each do |lodging| %>
             <div class="card">
               <% if lodging.image.attached? %>
-                <%= image_tag lodging.image, class:"card-img-top", alt:"Image" %>
+                <%= image_tag lodging.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0").processed, class:"card-img-top", alt:"Image" %>
               <% else %>
                 <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
               <% end %>
