@@ -19,13 +19,17 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12 mt-4 mb-5">
+    <div class="col-md-12 mt-4 mb-4">
       <div class="card-container d-flex">
 
         <% if @model == 'eatery' %>
           <% @eatery_records.each do |eatery| %>
             <div class="card">
-              <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
+              <% if eatery.image.attached? %>
+                <%= image_tag eatery.image, class:"card-img-top", alt:"Image" %>
+              <% else %>
+                <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
+              <% end %>
                 <div class="card-body">
                   <div class="card-title">
                     <h5><%= link_to eatery.restaurant_name, eatery_path(eatery.id) %></h5>
@@ -54,7 +58,11 @@
         <% elsif @model == 'lodging' %>
           <% @lodging_records.each do |lodging| %>
             <div class="card">
-              <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
+              <% if lodging.image.attached? %>
+                <%= image_tag lodging.image, class:"card-img-top", alt:"Image" %>
+              <% else %>
+                <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
+              <% end %>
                 <div class="card-body">
                   <div class="card-title">
                     <h5><%= link_to lodging.lodging_name, lodging_path(lodging.id) %></h5>
@@ -83,7 +91,11 @@
         <% else %>
           <% @eatery_records.each do |eatery| %>
             <div class="card">
-              <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
+              <% if eatery.image.attached? %>
+                <%= image_tag eatery.image, class:"card-img-top", alt:"Image" %>
+              <% else %>
+                <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
+              <% end %>
                 <div class="card-body">
                   <div class="card-title">
                     <h5><%= link_to eatery.restaurant_name, eatery_path(eatery.id) %></h5>
@@ -111,7 +123,11 @@
 
           <% @lodging_records.each do |lodging| %>
             <div class="card">
-              <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
+              <% if lodging.image.attached? %>
+                <%= image_tag lodging.image, class:"card-img-top", alt:"Image" %>
+              <% else %>
+                <%= image_tag "default-image.jpg", class:"card-img-top", alt:"Image" %>
+              <% end %>
                 <div class="card-body">
                   <div class="card-title">
                     <h5><%= link_to lodging.lodging_name, lodging_path(lodging.id) %></h5>

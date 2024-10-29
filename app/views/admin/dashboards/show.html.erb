@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 mt-4">
-      
+
       <% unless @eatery.approved %>
         <%= button_to "投稿を承認する", admin_approved_path(@eatery.id), method: :post, class: "btn btn-outline-secondary" %>
       <% end %>
@@ -20,6 +20,9 @@
           <th>URL</th> <td><%= @eatery.home_page %></td>
         </tr>
         <tr>
+          <th>画像</th> <td><%= image_tag @eatery.image, style: "width: 100px; height: 100px" %></td>
+        </tr>
+        <tr>
           <th>その他</th>
           <td>
             <% @categories.each do |category| %>
@@ -32,7 +35,7 @@
     <div class="col-md-4">
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-4 mt-4">
       <div class="d-flex">
@@ -43,7 +46,7 @@
     <div class="col-md-8">
     </div>
   </div>
-  
+
 </div>
 
 

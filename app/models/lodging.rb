@@ -1,12 +1,14 @@
 class Lodging < ApplicationRecord
 
+  has_one_attached :image
+
   belongs_to :user
   belongs_to :admin, optional: true
   has_many :lodging_reviews, dependent: :destroy
   has_many :lodging_categories, dependent: :destroy
   has_many :l_categories, through: :lodging_categories, dependent: :destroy
   has_many :lodging_favorites, dependent: :destroy
-  
+
   def get_image(width, height)
   unless image.attached?
     file_path = Rails.root.join('app/assets/images/default-image.jpg')
@@ -14,7 +16,7 @@ class Lodging < ApplicationRecord
   end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def favorited_by?(user)
     lodging_favorites.exists?(user_id: user.id)
   end

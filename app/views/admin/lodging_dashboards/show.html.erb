@@ -20,6 +20,9 @@
           <th>URL</th> <td><%= @lodging.home_page %></td>
         </tr>
         <tr>
+          <th>画像</th> <td><%= image_tag @lodging.image, style: "width: 100px; height: 100px" %></td>
+        </tr>
+        <tr>
           <th>その他</th>
           <td>
             <% @categories.each do |category| %>

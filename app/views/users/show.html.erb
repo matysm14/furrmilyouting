@@ -33,19 +33,19 @@
               <tr>
                 <td>
                   <div style="display: flex; align-items: center;">
-                  <h5 class="mt-2 mr-5"><%= review.eatery.restaurant_name %></h5>
+                  <h5 class="mt-2 mr-5"><%=link_to review.eatery.restaurant_name, eatery_path(review.eatery.id) %></h5>
 
                   <div id="show_star-<%= review.id %>"></div>
-                  <script>
-                  var elem = document.querySelector('#show_star-<%= review.id %>');
-                  var opt = {
-                  starOn: "<%= asset_path('star-on.png') %>",
-                  starOff: "<%= asset_path('star-off.png') %>",
-                  readOnly: true,
-                  score: <%= review.star %>
-                  };
-                  raty(elem,opt);
-                  </script>
+                    <script>
+                      var elem = document.querySelector('#show_star-<%= review.id %>');
+                      var opt = {
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      readOnly: true,
+                      score: <%= review.star %>
+                      };
+                      raty(elem,opt);
+                    </script>
                 </div>
 
                 <%= review.title %></br>
@@ -63,16 +63,12 @@
 
               </tr>
             <% end %>
-          </tbody>
-    　　  </table>
 
-        <table class="table table-default table-striped-columns">
-          <tbody>
             <% @user.lodging_reviews.each do |review| %>
               <tr>
                 <td>
                   <div style="display: flex; align-items: center;">
-                  <h5 class="mt-2 mr-5"><%= review.lodging.lodging_name %></h5>
+                  <h5 class="mt-2 mr-5"><%= link_to review.lodging.lodging_name, lodging_path(review.lodging.id)  %></h5>
 
                   <div id="show_star-<%= review.id %>"></div>
                     <script>
